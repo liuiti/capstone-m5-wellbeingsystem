@@ -19,9 +19,9 @@ class ListCreateCategoryView(SerializerByMethodMixin, generics.ListCreateAPIView
         "POST": CategorySerializer,
     }
 
-class RetrieveUpdateCategoryView(generics.RetrieveUpdateAPIView):
+class RetrieveUpdateCategoryView(generics.RetrieveUpdateDestroyAPIView):
     authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAuthenticatedOrReadOnly, CustomPermission]
 
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
