@@ -12,11 +12,19 @@ class ReceiptSerializer(serializers.ModelSerializer):
     class Meta:
         model = Receipt
         fields = "__all__"
-        # fields = [
-        #     "id",
-        #     "works",
-        #     "price",
-        #     "contractor",
-        #     "input_date",
-        #     "output_date",
-        # ]
+
+
+class PayedSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Receipt
+        fields = "__all__"
+
+    def update(self, instance: Receipt, validated_data):
+
+        if validated_data["payed"] == False:
+            raise serializers.ValidationError(
+                {"payed": "Não pode alterar o valor de 'payed' para False"}
+            )
+
+        instance.payed = validated_data.get("payed", instance.payed)
+        return instance

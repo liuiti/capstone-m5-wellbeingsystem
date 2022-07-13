@@ -5,6 +5,7 @@ from django.db import models
 
 class Receipt(models.Model):
     price = models.FloatField()
+    payed = models.BooleanField(default=False)
     input_date = models.DateField(auto_now_add=True)
     output_date = models.DateField(auto_now=True)
 

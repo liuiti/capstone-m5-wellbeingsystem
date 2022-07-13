@@ -12,6 +12,6 @@ class Work(models.Model):
         "categories.Category", on_delete=models.CASCADE, related_name="works"
     )
 
-    user = models.ForeignKey(
+    employee = models.ForeignKey(
         "accounts.Account", on_delete=models.CASCADE, related_name="works"
     )

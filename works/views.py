@@ -18,7 +18,7 @@ class ListCreateWorkView(SerializerByMethodMixin, generics.ListCreateAPIView):
     }
 
     def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+        serializer.save(employee=self.request.user)
 
 
 class RetrieveUpdateDestroyWorkView(generics.RetrieveUpdateDestroyAPIView):
