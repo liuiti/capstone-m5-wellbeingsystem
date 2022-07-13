@@ -7,7 +7,6 @@ from .models import Work
 from .permissions import CustomPermission, IsOwnerPermission
 
 
-
 class ListCreateWorkView(SerializerByMethodMixin, generics.ListCreateAPIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnly, CustomPermission]
@@ -19,8 +18,8 @@ class ListCreateWorkView(SerializerByMethodMixin, generics.ListCreateAPIView):
     }
 
     def perform_create(self, serializer):
-        
         serializer.save(user=self.request.user)
+
 
 class RetrieveUpdateDestroyWorkView(generics.RetrieveUpdateDestroyAPIView):
     authentication_classes = [TokenAuthentication]

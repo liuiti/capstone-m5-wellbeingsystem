@@ -11,3 +11,7 @@ class Receipt(models.Model):
     works = models.ForeignKey(
         "works.Work", on_delete=models.CASCADE, related_name="receipts"
     )
+
+    contractor = models.OneToOneField(
+        "accounts.Account", on_delete=models.CASCADE, related_name="receipts"
+    )
