@@ -11,9 +11,11 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from works.models import Work
 from accounts.permissions import IsSuperuserOrReadOnly
 from .permission import IsConstractorPermission
+from rest_framework import generics
 
 
-class ListCreateReceiptView(ListCreateAPIView):
+
+class CreateReceiptView(generics.CreateAPIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnly]
 
@@ -27,7 +29,7 @@ class ListCreateReceiptView(ListCreateAPIView):
 
 class RetrieveUpdateReceiptView(RetrieveUpdateAPIView):
     authentication_classes = [TokenAuthentication]
-    permission_classes = [IsSuperuserOrReadOnly]
+    permission_classes = [IsSuperuserOrReadOnly, IsConstractorPermission]
 
     queryset = Receipt.objects.all()
     serializer_class = ReceiptSerializer
