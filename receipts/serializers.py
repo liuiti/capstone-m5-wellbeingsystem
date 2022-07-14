@@ -1,5 +1,4 @@
 from rest_framework import serializers
-import ipdb
 from works.serializers import ListWorksSerializer
 from accounts.serializers import AccountSerializer
 from .models import Receipt
