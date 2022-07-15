@@ -10,7 +10,6 @@ from works.models import Work
 from accounts.permissions import IsSuperuserOrReadOnly
 from .permission import IsConstractorPermission
 from rest_framework import generics
-import ipdb
 
 
 class CreateReceiptView(generics.CreateAPIView):
