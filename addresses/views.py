@@ -12,7 +12,10 @@ class ListCreateAddressView(SerializerByMethodMixin, ListCreateAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly, CustomPermission]
 
     queryset = Address.objects.all()
-    serializer_class = AddressSerializer
+    serializer_map = {
+        "GET": AddressSerializer,
+        "POST": AddressSerializer,
+    }
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)

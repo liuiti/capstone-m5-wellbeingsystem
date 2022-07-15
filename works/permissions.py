@@ -11,5 +11,5 @@ class CustomPermission(permissions.BasePermission):
 
 class IsOwnerPermission(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
-        if request.user.is_superuser or obj.user_id == request.user.id:
+        if request.user.is_superuser or obj.employee_id == request.user.id:
             return True

@@ -13,6 +13,6 @@ class Receipt(models.Model):
         "works.Work", on_delete=models.CASCADE, related_name="receipts"
     )
 
-    contractor = models.OneToOneField(
+    contractor = models.ForeignKey(
         "accounts.Account", on_delete=models.CASCADE, related_name="receipts"
     )

@@ -4,7 +4,7 @@ from django.db import models
 
 
 class Avaliation(models.Model):
-    comment = models.CharField(max_length=200)
+    comment = models.CharField(max_length=200, null=True)
     stars = models.IntegerField()
 
     receipt = models.OneToOneField(
