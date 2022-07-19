@@ -1,0 +1,1198 @@
+openapi: 3.0.3
+info:
+  title: Well Being System
+  version: 1.0.0
+  description: Home maintenance system
+paths:
+  /api/{id}/avaliations/:
+    get:
+      operationId: avaliations_list
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this avaliation.
+        required: true
+      tags:
+      - avaliations
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Avaliation'
+          description: ''
+    post:
+      operationId: avaliations_create
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this avaliation.
+        required: true
+      tags:
+      - avaliations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Avaliation'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Avaliation'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Avaliation'
+        required: true
+      security:
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Avaliation'
+          description: ''
+  /api/{id}/receipts/:
+    post:
+      operationId: receipts_create
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this receipt.
+        required: true
+      tags:
+      - receipts
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Receipt'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Receipt'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Receipt'
+        required: true
+      security:
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Receipt'
+          description: ''
+  /api/accounts/:
+    get:
+      operationId: accounts_list
+      tags:
+      - accounts
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Account'
+          description: ''
+  /api/accounts/{id}/:
+    get:
+      operationId: accounts_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this user.
+        required: true
+      tags:
+      - accounts
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+          description: ''
+    put:
+      operationId: accounts_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this user.
+        required: true
+      tags:
+      - accounts
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Account'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Account'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Account'
+        required: true
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+          description: ''
+    patch:
+      operationId: accounts_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this user.
+        required: true
+      tags:
+      - accounts
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedAccount'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedAccount'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedAccount'
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+          description: ''
+    delete:
+      operationId: accounts_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this user.
+        required: true
+      tags:
+      - accounts
+      security:
+      - tokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/address/:
+    get:
+      operationId: address_list
+      tags:
+      - address
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Address'
+          description: ''
+    post:
+      operationId: address_create
+      tags:
+      - address
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Address'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Address'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Address'
+        required: true
+      security:
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Address'
+          description: ''
+  /api/address/{id}/:
+    get:
+      operationId: address_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this address.
+        required: true
+      tags:
+      - address
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+    put:
+      operationId: address_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this address.
+        required: true
+      tags:
+      - address
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+    patch:
+      operationId: address_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this address.
+        required: true
+      tags:
+      - address
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+    delete:
+      operationId: address_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this address.
+        required: true
+      tags:
+      - address
+      security:
+      - tokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/avaliations/{id}/:
+    get:
+      operationId: avaliations_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this avaliation.
+        required: true
+      tags:
+      - avaliations
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+    put:
+      operationId: avaliations_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this avaliation.
+        required: true
+      tags:
+      - avaliations
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+    patch:
+      operationId: avaliations_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this avaliation.
+        required: true
+      tags:
+      - avaliations
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+    delete:
+      operationId: avaliations_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this avaliation.
+        required: true
+      tags:
+      - avaliations
+      security:
+      - tokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/categories/:
+    get:
+      operationId: categories_list
+      tags:
+      - categories
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Category'
+          description: ''
+    post:
+      operationId: categories_create
+      tags:
+      - categories
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Category'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Category'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Category'
+        required: true
+      security:
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+          description: ''
+  /api/categories/{id}/:
+    get:
+      operationId: categories_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this category.
+        required: true
+      tags:
+      - categories
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+          description: ''
+    put:
+      operationId: categories_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this category.
+        required: true
+      tags:
+      - categories
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Category'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Category'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Category'
+        required: true
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+          description: ''
+    patch:
+      operationId: categories_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this category.
+        required: true
+      tags:
+      - categories
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedCategory'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedCategory'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedCategory'
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+          description: ''
+    delete:
+      operationId: categories_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this category.
+        required: true
+      tags:
+      - categories
+      security:
+      - tokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/login/:
+    post:
+      operationId: login_create
+      tags:
+      - login
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/receipts/{id}/:
+    get:
+      operationId: receipts_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this receipt.
+        required: true
+      tags:
+      - receipts
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Receipt'
+          description: ''
+    put:
+      operationId: receipts_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this receipt.
+        required: true
+      tags:
+      - receipts
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Receipt'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Receipt'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Receipt'
+        required: true
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Receipt'
+          description: ''
+    patch:
+      operationId: receipts_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this receipt.
+        required: true
+      tags:
+      - receipts
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedReceipt'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedReceipt'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedReceipt'
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Receipt'
+          description: ''
+  /api/receipts/{id}/pay/:
+    put:
+      operationId: receipts_pay_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this receipt.
+        required: true
+      tags:
+      - receipts
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Payed'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Payed'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Payed'
+        required: true
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payed'
+          description: ''
+    patch:
+      operationId: receipts_pay_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this receipt.
+        required: true
+      tags:
+      - receipts
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedPayed'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedPayed'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedPayed'
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payed'
+          description: ''
+  /api/receipts/users/{id}/:
+    get:
+      operationId: receipts_users_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - receipts
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/register/:
+    post:
+      operationId: register_create
+      tags:
+      - register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Account'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Account'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Account'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+          description: ''
+  /api/works/:
+    get:
+      operationId: works_list
+      tags:
+      - works
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ListWorks'
+          description: ''
+    post:
+      operationId: works_create
+      tags:
+      - works
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Work'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Work'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Work'
+        required: true
+      security:
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Work'
+          description: ''
+  /api/works/{id}/:
+    get:
+      operationId: works_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this work.
+        required: true
+      tags:
+      - works
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Work'
+          description: ''
+    put:
+      operationId: works_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this work.
+        required: true
+      tags:
+      - works
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Work'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Work'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Work'
+        required: true
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Work'
+          description: ''
+    patch:
+      operationId: works_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this work.
+        required: true
+      tags:
+      - works
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedWork'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedWork'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedWork'
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Work'
+          description: ''
+    delete:
+      operationId: works_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this work.
+        required: true
+      tags:
+      - works
+      security:
+      - tokenAuth: []
+      responses:
+        '204':
+          description: No response body
+components:
+  schemas:
+    Account:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          maxLength: 255
+        name:
+          type: string
+          maxLength: 50
+        is_worker:
+          type: boolean
+        birth_date:
+          type: string
+          format: date
+        date_joined:
+          type: string
+          format: date-time
+        password:
+          type: string
+          writeOnly: true
+          maxLength: 128
+      required:
+      - birth_date
+      - email
+      - is_worker
+      - name
+      - password
+    Address:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        user:
+          allOf:
+          - $ref: '#/components/schemas/Account'
+          readOnly: true
+        street:
+          type: string
+          maxLength: 155
+        number:
+          type: string
+          maxLength: 20
+        zip_code:
+          type: string
+          maxLength: 80
+        city:
+          type: string
+          maxLength: 100
+      required:
+      - city
+      - id
+      - number
+      - street
+      - user
+      - zip_code
+    Avaliation:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        receipt:
+          allOf:
+          - $ref: '#/components/schemas/Receipt'
+          readOnly: true
+        comment:
+          type: string
+          nullable: true
+          maxLength: 200
+        stars:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+      required:
+      - id
+      - receipt
+      - stars
+    Category:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 127
+      required:
+      - id
+      - name
+    ListWorks:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        employee:
+          allOf:
+          - $ref: '#/components/schemas/Account'
+          readOnly: true
+        category:
+          allOf:
+          - $ref: '#/components/schemas/Category'
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+      required:
+      - category
+      - employee
+      - id
+      - name
+    PatchedAccount:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          maxLength: 255
+        name:
+          type: string
+          maxLength: 50
+        is_worker:
+          type: boolean
+        birth_date:
+          type: string
+          format: date
+        date_joined:
+          type: string
+          format: date-time
+        password:
+          type: string
+          writeOnly: true
+          maxLength: 128
+    PatchedCategory:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 127
+    PatchedPayed:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        price:
+          type: number
+          format: double
+        payed:
+          type: boolean
+        input_date:
+          type: string
+          format: date
+          readOnly: true
+        output_date:
+          type: string
+          format: date
+          readOnly: true
+        works:
+          type: string
+          format: uuid
+        contractor:
+          type: string
+          format: uuid
+    PatchedReceipt:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        works:
+          allOf:
+          - $ref: '#/components/schemas/ListWorks'
+          readOnly: true
+        contractor:
+          allOf:
+          - $ref: '#/components/schemas/Account'
+          readOnly: true
+        price:
+          type: number
+          format: double
+        payed:
+          type: boolean
+        input_date:
+          type: string
+          format: date
+          readOnly: true
+        output_date:
+          type: string
+          format: date
+          readOnly: true
+    PatchedWork:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        employee:
+          allOf:
+          - $ref: '#/components/schemas/Account'
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        category:
+          type: integer
+    Payed:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        price:
+          type: number
+          format: double
+        payed:
+          type: boolean
+        input_date:
+          type: string
+          format: date
+          readOnly: true
+        output_date:
+          type: string
+          format: date
+          readOnly: true
+        works:
+          type: string
+          format: uuid
+        contractor:
+          type: string
+          format: uuid
+      required:
+      - contractor
+      - id
+      - input_date
+      - output_date
+      - price
+      - works
+    Receipt:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        works:
+          allOf:
+          - $ref: '#/components/schemas/ListWorks'
+          readOnly: true
+        contractor:
+          allOf:
+          - $ref: '#/components/schemas/Account'
+          readOnly: true
+        price:
+          type: number
+          format: double
+        payed:
+          type: boolean
+        input_date:
+          type: string
+          format: date
+          readOnly: true
+        output_date:
+          type: string
+          format: date
+          readOnly: true
+      required:
+      - contractor
+      - id
+      - input_date
+      - output_date
+      - price
+      - works
+    Work:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        employee:
+          allOf:
+          - $ref: '#/components/schemas/Account'
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        category:
+          type: integer
+      required:
+      - category
+      - employee
+      - id
+      - name
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Token-based authentication with required prefix "Token"

@@ -46,6 +46,7 @@ DJANGO_APPS = [
 THIRD_PARTY_APP = [
     "rest_framework",
     "rest_framework.authtoken",
+    "drf_spectacular"
 ]
 
 MY_APPS = ["accounts", "avaliations", "receipts", "works", "addresses", "categories"]
@@ -148,3 +149,14 @@ if DATABASE_URL:
         default=DATABASE_URL, conn_max_age=500, ssl_require=True)
     DATABASES['default'].update(db_from_env)
     DEBUG = False
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Well Being System',
+    'DESCRIPTION': 'Home maintenance system',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}
