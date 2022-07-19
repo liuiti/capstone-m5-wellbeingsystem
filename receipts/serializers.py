@@ -11,7 +11,7 @@ class ReceiptSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Receipt
-        fields = "__all__"
+        exclude = ["payed"]
 
 
 class PayedSerializer(serializers.ModelSerializer):

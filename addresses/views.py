@@ -9,7 +9,7 @@ from .models import Address
 
 class ListCreateAddressView(SerializerByMethodMixin, ListCreateAPIView):
     authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticatedOrReadOnly, CustomPermission]
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     queryset = Address.objects.all()
     serializer_class = AddressSerializer
@@ -18,9 +18,11 @@ class ListCreateAddressView(SerializerByMethodMixin, ListCreateAPIView):
         serializer.save(user=self.request.user)
 
 
-class RetrieveUpdateDestroyAddressView(SerializerByMethodMixin, RetrieveUpdateDestroyAPIView):
+class RetrieveUpdateDestroyAddressView(
+    SerializerByMethodMixin, RetrieveUpdateDestroyAPIView
+):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnly, CustomPermission]
-    
+
     queryset = Address.objects.all()
     serializer_class = AddressSerializer
