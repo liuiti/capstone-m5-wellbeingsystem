@@ -3,9 +3,6 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from accounts.utils import CustomUserManager
 
-# Create your models here.
-
-
 class Account(AbstractUser):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     email = models.EmailField(max_length=255, unique=True)

@@ -1,8 +1,5 @@
 from django.db import models
 
-# Create your models here.
-
-
 class Receipt(models.Model):
     price = models.FloatField()
     payed = models.BooleanField(default=False)
