@@ -37,13 +37,16 @@ class UpdatePayed(generics.UpdateAPIView):
     permission_classes = [IsConstractorPermission]
 
     queryset = Receipt.objects.all()
-    serializer_class = PayedSerializer
+    serializer_class = ReceiptSerializer
+
+
 
 
 class ListUsersFromReceipts(APIView):
     def get(self, request, pk):
 
         if Receipt.objects.all().filter(contractor=pk):
+            
             receipts = Receipt.objects.all().filter(contractor=pk)
             serializer = ReceiptSerializer(receipts, many=True)
 
