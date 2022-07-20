@@ -1,7 +1,7 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
-from addresses.permissions import CustomPermission
+from addresses.permissions import IsOwnerPermission
 from addresses.serializers import AddressSerializer
 from .mixins import SerializerByMethodMixin
 from .models import Address
@@ -25,7 +25,7 @@ class RetrieveUpdateDestroyAddressView(
     SerializerByMethodMixin, RetrieveUpdateDestroyAPIView
 ):
     authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticatedOrReadOnly, CustomPermission]
+    permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerPermission]
 
     queryset = Address.objects.all()
     serializer_class = AddressSerializer

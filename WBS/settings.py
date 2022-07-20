@@ -29,7 +29,7 @@ SECRET_KEY = "django-insecure-+zd6l_x14tw8k69&z0m@*7-ql6pum5!pb0%qk2c8ftjdog)+i%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['capstone-m5-wbs.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['capstone-m5-wbs.herokuapp.com', 'localhost', '127.0.0.1']
 
 
 # Application definition

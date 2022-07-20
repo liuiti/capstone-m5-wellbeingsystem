@@ -10,7 +10,7 @@ class ReceiptSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Receipt
-        exclude = ["payed"]
+        fields = "__all__"
 
 
 class PayedSerializer(serializers.ModelSerializer):
@@ -24,6 +24,8 @@ class PayedSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 {"payed": "Não pode alterar o valor de 'payed' para False"}
             )
-
+        
         instance.payed = validated_data.get("payed", instance.payed)
         return instance
+
+

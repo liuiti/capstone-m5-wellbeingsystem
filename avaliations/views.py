@@ -25,7 +25,10 @@ class RetrieveUpdateDestroyAvaliationView(
     SerializerByMethodMixin, RetrieveUpdateDestroyAPIView
 ):
     authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated, IsOwnerPermission]
+    permission_classes = [IsOwnerPermission]
 
     queryset = Avaliation.objects.all()
-    serializer_class = AvaliationSerializer
+    serializer_map = {
+        "GET": AvaliationSerializer,
+        "POST": AvaliationSerializer,
+        }
